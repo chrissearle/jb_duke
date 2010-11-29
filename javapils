@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Run via cron
+# 0 10 * * Tue root /path/to/javapils
+
 if [ -x /usr/local/lib/rvm ]; then
 	. /usr/local/lib/rvm
 else
