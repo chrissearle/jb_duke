@@ -7,8 +7,6 @@ CONSUMER_SECRET = "i4FEs4B7nGsQTHnzFG1GaTB3ki9vrzmbcIozIE7JNjw"
 ACCESS_TOKEN = "14291692-NYsi1cfRtTuwH9WZjbSDhDpVwWIRWvjvZy2JWfa3Q"
 ACCESS_SECRET = "S6tQZEQckUFG7XN4fmJSkpVAclfzFzm7fitV2mnfc"
 
-
-
 I18n.load_path << Dir[ File.join(File.dirname(__FILE__), 'locale', '*.{yml}') ]
 
 # set default locale to something other than :en
