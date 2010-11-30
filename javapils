@@ -11,4 +11,4 @@ fi
 
 rvm 1.9.2@javapils
 
-ruby `dirname $0`/billabong.rb
+ruby `dirname $0`/javapils.rb
