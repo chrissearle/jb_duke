@@ -9,6 +9,7 @@ GEM
       rack (>= 1.1.0, < 2)
     faraday_middleware (0.3.0)
       faraday (~> 0.5.3)
+    getopt (1.4.0)
     hashie (0.4.0)
     i18n (0.5.0)
     multi_json (0.0.5)
@@ -28,5 +29,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  getopt
   i18n (>= 0.4.1)
   twitter (>= 0.9.7)
