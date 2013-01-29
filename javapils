@@ -3,4 +3,8 @@
 # Run via cron
 # 0 10 * * Tue root /path/to/javapils
 
-bundle exec ./javazone.rb $1
+pushd `dirname $0` 2>&1 > /dev/null
+
+bundle exec `dirname $0`/javapils.rb $1
+
+popd 2>&1 > /dev/null
