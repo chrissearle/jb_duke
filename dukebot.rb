@@ -85,7 +85,7 @@ bot = Cinch::Bot.new do
     c.user = conf['user-name']
     c.server = conf['hostname']
     c.channels = [conf['channel']]
-    c.verbose = true
+    c.verbose = @test
     c.plugins.plugins = [TimeActivatedPlugin, JavaPilsPlugin]
   end
 end
