@@ -1,29 +1,17 @@
 GEM
   remote: http://rubygems.org/
-  remote: http://rubygems.org/
   specs:
-    addressable (2.2.2)
-    faraday (0.5.3)
-      addressable (~> 2.2.2)
-      multipart-post (~> 1.0.1)
-      rack (>= 1.1.0, < 2)
-    faraday_middleware (0.3.0)
-      faraday (~> 0.5.3)
-    getopt (1.4.0)
-    hashie (0.4.0)
-    i18n (0.5.0)
-    multi_json (0.0.5)
-    multi_xml (0.2.0)
-    multipart-post (1.0.1)
-    rack (1.2.1)
-    simple_oauth (0.1.2)
-    twitter (1.0.0)
-      faraday (~> 0.5.3)
-      faraday_middleware (~> 0.3.0)
-      hashie (~> 0.4.0)
-      multi_json (~> 0.0.5)
-      multi_xml (~> 0.2.0)
-      simple_oauth (~> 0.1.2)
+    faraday (0.8.4)
+      multipart-post (~> 1.1)
+    getopt (1.4.1)
+    i18n (0.6.1)
+    multi_json (1.5.0)
+    multipart-post (1.1.5)
+    simple_oauth (0.2.0)
+    twitter (4.5.0)
+      faraday (~> 0.8, < 0.10)
+      multi_json (~> 1.0)
+      simple_oauth (~> 0.2)
 
 PLATFORMS
   ruby
