@@ -6,7 +6,7 @@ require 'i18n'
 def beer?
   weeknum = (I18n.l Time.now, :format => '%V').to_i
   dow = (I18n.l Time.now, :format => '%u').to_i
-  
+
   dow == 2 && (weeknum % 2 == 1)
 end
 
@@ -25,7 +25,7 @@ class TimeActivatedThread
   
   def start
     @bot.loggers.debug "Started TimeActivatedThread"
-    while (true)
+    while true
       sleep 60
       if beer?
         if showbeer?
