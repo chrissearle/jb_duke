@@ -43,7 +43,7 @@ class TimeActivatedPlugin
 
   def listen(m, message)
     debug "I got message #{message}"
-    Channel("#just-testing").send message
+    Channel("#java.no").send message
   end
 end
 
@@ -67,7 +67,7 @@ bot = Cinch::Bot.new do
     c.realname = "javaBin Duke Bot"
     c.user = "jb_duke"
     c.server = "irc.underworld.no"
-    c.channels = ["#just-testing"]
+    c.channels = ["#java.no"]
     c.verbose = true
     c.plugins.plugins = [TimeActivatedPlugin, JavaPilsPlugin]
   end
