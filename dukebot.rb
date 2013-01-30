@@ -2,6 +2,7 @@
 
 require 'cinch'
 require 'i18n'
+require 'looper'
 require 'getopt/std'
 
 require File.dirname(__FILE__) + '/javabin/beer'
@@ -24,17 +25,24 @@ def get_beer
   @beer ||= Beer.new(get_config)
 end
 
-class TimeActivatedThread
+class TimeActivatedAction
+  include Looper
+  
   def initialize(bot)
     @bot = bot
     @beer = get_beer
-    @bot.loggers.debug "Initialized TimeActivatedThread with bot"
+    @run = true
+    @sleep = 60
+    
+    @bot.loggers.debug "TimeActivatedAction - initialized"
   end
 
-  def start
-    @bot.loggers.debug "Started TimeActivatedThread"
-    while true
-      sleep 60
+  def run
+    @bot.loggers.debug "TimeActivatedAction - started"
+    
+    loopme(@sleep) do
+      @bot.loggers.debug "TimeActivatedAction - run"
+      
       locations = @beer.beer?
 
       locations.each do |location|
@@ -90,5 +98,5 @@ bot = Cinch::Bot.new do
   end
 end
 
-Thread.new { TimeActivatedThread.new(bot).start }
+Thread.new { TimeActivatedAction.new(bot).run }
 bot.start
