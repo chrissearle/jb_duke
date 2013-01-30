@@ -1,0 +1,49 @@
+bot:
+  hostname: "irc.underworld.no"
+  channel: "#java.no"
+  nick: "jb_duke"
+  real-name: "javaBin Duke Bot"
+  user-name: "jb_duke"
+beer:
+  locations:
+    oslo:
+      day-of-week: 2
+      announce-hour: 10
+      announce-min: 0
+      week: 'odd'
+      display-name: 'Oslo'
+      place: 'Billabong'
+tweeter:
+  consumer:
+    token: ---
+    secret: ---
+  access:
+    token: ---
+    secret: ---
+  message:
+      format: "LOC javaPils i dag - %d. %b - PLACE"
+test:
+  bot:
+    hostname: "irc.underworld.no"
+    channel: "#just-testing"
+    nick: "test_duke"
+    real-name: "javaBin Duke Test"
+    user-name: "test_duke"
+  beer:
+    locations:
+      oslo:
+        day-of-week: 2
+        announce-hour: 10
+        announce-min: 0
+        week: 'odd'
+        display-name: 'Oslo'
+        place: 'Billabong'
+  tweeter:
+    consumer:
+      token: ---
+      secret: ---
+    access:
+      token: ---
+      secret: ---
+    message:
+      format: "Testing javapils announce LOC - %d. %b - week %V - PLACE"
