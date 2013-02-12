@@ -27,6 +27,11 @@ def get_config
 end
 
 conf = get_config['bot']
+
+puts "Running with config:"
+
+puts conf.inspect
+
 tweeter = Tweeter.new(get_config['tweeter'])
 
 if opt["a"]

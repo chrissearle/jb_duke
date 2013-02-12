@@ -43,7 +43,7 @@ class Beer
       hour = (I18n.l now, :format => '%H').to_i
       min = (I18n.l now, :format => '%M').to_i
 
-      hour == @locations[location]['announce-hour'] && min == @locations[location]['announce-min']
+      return hour == @locations[location]['announce-hour'] && min == @locations[location]['announce-min']
     end
 
     false
