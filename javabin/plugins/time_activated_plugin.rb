@@ -6,6 +6,7 @@ class TimeActivatedPlugin
   listen_to :time_activated
 
   def listen(m, message)
+    debug "TimeActivatedPlugin - Triggered with #{message}"
     Channel(config[:chan]).send message
   end
 end

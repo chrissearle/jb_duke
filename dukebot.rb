@@ -49,7 +49,7 @@ bot = Cinch::Bot.new do
     c.server = conf['hostname']
     c.channels = [conf['channel']]
     c.verbose = @test
-    c.plugins.plugins = [TimeActivatedPlugin, JavaPilsPlugin]
+    c.plugins.plugins = [TimeActivatedPlugin, JavaPilsPlugin, CommandListPlugin]
     c.plugins.options[JavaPilsPlugin] = {:beer => beer}
     c.plugins.options[TimeActivatedPlugin] = {:chan => conf['channel']}
   end
