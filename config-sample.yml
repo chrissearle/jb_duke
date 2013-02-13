@@ -4,6 +4,9 @@ bot:
   nick: "jb_duke"
   real-name: "javaBin Duke Bot"
   user-name: "jb_duke"
+mongo:
+  uri: mongodb://localhost
+  db: dukebot
 beer:
   locations:
     oslo:
@@ -23,6 +26,9 @@ tweeter:
   message:
       format: "LOC javaPils i dag - %d. %b - PLACE"
 test:
+  mongo:
+    uri: mongodb://localhost
+    db: dukebot
   bot:
     hostname: "irc.underworld.no"
     channel: "#just-testing"

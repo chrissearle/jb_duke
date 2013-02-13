@@ -5,6 +5,7 @@ require 'i18n'
 require 'twitter'
 require 'looper'
 require 'getopt/std'
+require 'mongo'
 
 require File.dirname(__FILE__) + '/javabin/beer'
 require File.dirname(__FILE__) + '/javabin/plugins'
@@ -26,11 +27,11 @@ def get_config
   end
 end
 
-conf = get_config['bot']
-
 puts "Running with config:"
 
-puts conf.inspect
+puts get_config
+
+conf = get_config['bot']
 
 tweeter = Tweeter.new(get_config['tweeter'])
 
@@ -41,6 +42,9 @@ end
 
 beer = Beer.new(get_config['beer'])
 
+mongo = Mongo::MongoClient::from_uri(get_config['mongo']['uri'])
+mongodb = mongo.db(get_config['mongo']['db'])
+
 bot = Cinch::Bot.new do
   configure do |c|
     c.nick = conf['nick']
@@ -49,9 +53,10 @@ bot = Cinch::Bot.new do
     c.server = conf['hostname']
     c.channels = [conf['channel']]
     c.verbose = @test
-    c.plugins.plugins = [TimeActivatedPlugin, JavaPilsPlugin, CommandListPlugin]
+    c.plugins.plugins = [TimeActivatedPlugin, JavaPilsPlugin, CommandListPlugin, UrlLoggerPlugin]
     c.plugins.options[JavaPilsPlugin] = {:beer => beer}
     c.plugins.options[TimeActivatedPlugin] = {:chan => conf['channel']}
+    c.plugins.options[UrlLoggerPlugin] = {:mongo => mongodb}
   end
 end
 

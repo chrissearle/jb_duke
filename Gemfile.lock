@@ -1,13 +1,18 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    cinch (2.0.3)
-    faraday (0.8.4)
+    bson (1.8.2)
+    bson_ext (1.8.2)
+      bson (~> 1.8.2)
+    cinch (2.0.4)
+    faraday (0.8.5)
       multipart-post (~> 1.1)
     getopt (1.4.1)
     i18n (0.6.1)
     looper (0.0.3)
-    multi_json (1.5.0)
+    mongo (1.8.2)
+      bson (~> 1.8.2)
+    multi_json (1.6.0)
     multipart-post (1.1.5)
     simple_oauth (0.2.0)
     twitter (4.5.0)
@@ -19,8 +24,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bson_ext
   cinch
   getopt
   i18n (>= 0.4.1)
   looper
+  mongo
   twitter (>= 0.9.7)
