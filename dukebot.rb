@@ -5,11 +5,12 @@ require 'i18n'
 require 'twitter'
 require 'getopt/std'
 require 'mongo'
+require 'pp'
 
 require 'dukelibs'
 
 def log(log)
-  puts log
+  pp log
   $stdout.flush
 end
 
@@ -21,13 +22,18 @@ opt = Getopt::Std.getopts("ta")
 @test = opt["t"]
 
 def get_config
-  @config ||= YAML::load(File.open(File.join(File.dirname(__FILE__), 'config.yml')))
+  if @config.nil?
+    config =  YAML::load(File.open(File.join(File.dirname(__FILE__), 'config.yml')))
+    testconfig = config.delete 'test'
 
-  if @test
-    @config['test']
-  else
-    @config
+    if @test
+      config = config.deep_merge(testconfig)
+    end
+
+    @config = config
   end
+
+  @config
 end
 
 log "Running with config:"

@@ -1,3 +1,5 @@
+require 'general/deep_merge'
+
 require 'beer/beer'
 
 require 'twitter/tweeter'

@@ -29,29 +29,11 @@ tweeter:
 test:
   mongo:
     uri: mongodb://localhost
-    db: dukebot
   bot:
-    hostname: "irc.underworld.no"
     channel: "#just-testing"
     nick: "test_duke"
     real-name: "javaBin Duke Test"
     user-name: "test_duke"
-  beer:
-    locations:
-      oslo:
-        day-of-week: 2
-        announce-hour: 10
-        announce-min: 0
-        week: 'odd'
-        display-name: 'Oslo'
-        place: 'Billabong'
   tweeter:
-    consumer:
-      token: ---
-      secret: ---
-    access:
-      token: ---
-      secret: ---
     message:
       beer: "Testing javapils announce LOC - %d. %b - week %V - PLACE"
-      mention: "Nevnt: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID"
