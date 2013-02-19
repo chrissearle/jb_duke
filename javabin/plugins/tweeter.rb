@@ -43,14 +43,21 @@ class Tweeter
 
     mentions = @client.mentions(opts)
 
+    result = []
+
     if mentions.size > 0
       @last_mention = mentions.first.id
+
+      result = mentions.map do |m|
+        "Mentioned: #{m.user.name} @#{m.full_text} - https://twitter.com/#{m.user.screen_name}/status/#{m.id}"
+      end
+
+#      puts result
     end
 
+
     if opts.has_key? :since_id
-      mentions.map do |m|
-        "Mentioned: #{m.user.screen_name} - #{m.full_text}"
-      end
+      result
     else
       []
     end
