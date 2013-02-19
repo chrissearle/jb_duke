@@ -6,8 +6,12 @@ require 'twitter'
 require 'getopt/std'
 require 'mongo'
 
-require File.dirname(__FILE__) + '/javabin/beer'
-require File.dirname(__FILE__) + '/javabin/plugins'
+require 'dukelibs'
+
+def log(log)
+  puts log
+  $stdout.flush
+end
 
 I18n.load_path << Dir[File.join(File.dirname(__FILE__), 'locale', '*.{yml}')]
 I18n.default_locale = :nb
@@ -26,9 +30,9 @@ def get_config
   end
 end
 
-puts "Running with config:"
+log "Running with config:"
 
-puts get_config
+log get_config
 
 conf = get_config['bot']
 

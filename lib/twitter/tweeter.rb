@@ -51,8 +51,6 @@ class Tweeter
       result = mentions.map do |m|
         "Mentioned: #{m.user.name} @#{m.full_text} - https://twitter.com/#{m.user.screen_name}/status/#{m.id}"
       end
-
-#      puts result
     end
 
 
