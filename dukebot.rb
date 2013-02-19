@@ -58,6 +58,10 @@ bot = Cinch::Bot.new do
     c.plugins.options[TimeActivatedPlugin] = {:chan => conf['channel']}
     c.plugins.options[UrlLoggerPlugin] = {:mongo => mongodb}
   end
+
+  on :connect do
+    tweeter.enable()
+  end
 end
 
 Thread.new { TimeActivatedAction.new(bot, beer, tweeter).run }
