@@ -24,7 +24,8 @@ tweeter:
     token: ---
     secret: ---
   message:
-      format: "LOC javaPils i dag - %d. %b - PLACE"
+    beer: "LOC javaPils i dag - %d. %b - PLACE"
+    mention: "Nevnt: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID"
 test:
   mongo:
     uri: mongodb://localhost
@@ -52,4 +53,5 @@ test:
       token: ---
       secret: ---
     message:
-      format: "Testing javapils announce LOC - %d. %b - week %V - PLACE"
+      beer: "Testing javapils announce LOC - %d. %b - week %V - PLACE"
+      mention: "Nevnt: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID"

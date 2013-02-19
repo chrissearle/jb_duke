@@ -15,7 +15,7 @@ class Tweeter
 
     @client = Twitter::Client.new
 
-    @message_format = config['message']['format']
+    @message_formats = config['message']
   end
 
   def enable
@@ -27,9 +27,12 @@ class Tweeter
   def tweet(name, place)
     return unless @enabled
 
-    message = I18n.l Time.now, :format => @message_format
+    message = I18n.l Time.now, :format => @message_formats['beer']
 
-    message = message.gsub(/LOC/, name).gsub(/PLACE/, place)
+    message = format_string(message, {
+        :loc => name,
+        :place => place
+    })
 
     @client.update(message)
   end
@@ -49,15 +52,30 @@ class Tweeter
       @last_mention = mentions.first.id
 
       result = mentions.map do |m|
-        "Mentioned: #{m.user.name} @#{m.full_text} - https://twitter.com/#{m.user.screen_name}/status/#{m.id}"
+        format_string(@message_formats['mention'], {
+            :username => m.user.name,
+            :screenname => m.user.screen_name,
+            :text => m.full_text,
+            :id => m.id.to_s
+        })
       end
     end
-
 
     if opts.has_key? :since_id
       result
     else
       []
     end
+  end
+
+  def format_string(template, params)
+    result = template
+
+    params.each do |key, val|
+      match = key.to_s.upcase
+      result = result.gsub(/#{match}/, val)
+    end
+
+    result
   end
 end
