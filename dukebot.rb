@@ -39,6 +39,7 @@ conf = get_config['bot']
 tweeter = Tweeter.new(get_config['tweeter'])
 
 if opt["a"]
+  tweeter.enable()
   tweeter.tweet("Test", "TestLoc")
   exit
 end
