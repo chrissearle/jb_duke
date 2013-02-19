@@ -3,7 +3,6 @@
 require 'cinch'
 require 'i18n'
 require 'twitter'
-require 'looper'
 require 'getopt/std'
 require 'mongo'
 
@@ -53,9 +52,9 @@ bot = Cinch::Bot.new do
     c.server = conf['hostname']
     c.channels = [conf['channel']]
     c.verbose = @test
-    c.plugins.plugins = [TimeActivatedPlugin, JavaPilsPlugin, CommandListPlugin, UrlLoggerPlugin]
-    c.plugins.options[JavaPilsPlugin] = {:beer => beer}
-    c.plugins.options[TimeActivatedPlugin] = {:chan => conf['channel']}
+    c.plugins.plugins = [JavaPilsPlugin, CommandListPlugin, UrlLoggerPlugin, TwitterPlugin]
+    c.plugins.options[JavaPilsPlugin] = {:beer => beer, :chan => conf['channel'], :tweeter => tweeter}
+    c.plugins.options[TwitterPlugin] = {:chan => conf['channel'], :tweeter => tweeter}
     c.plugins.options[UrlLoggerPlugin] = {:mongo => mongodb}
   end
 
@@ -64,5 +63,4 @@ bot = Cinch::Bot.new do
   end
 end
 
-Thread.new { TimeActivatedAction.new(bot, beer, tweeter).run }
 bot.start

@@ -11,7 +11,7 @@ class UrlLoggerPlugin
     urls = URI.extract(m.message, ['http', 'https', 'ftp', 'mailto'])
     
     urls.each do |url|
-      data = { 'url' => url, :nick => m.user.nick, :time => m.time, :message => m.message }
+      data = { :url => url, :nick => m.user.nick, :time => m.time, :message => m.message }
       
       if m.channel?
         data['channel'] = m.channel.name
