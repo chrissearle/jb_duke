@@ -22,10 +22,12 @@ class JavaPilsPlugin
 
     debug "Timed - saw #{locations}"
 
+    message = I18n.l Time.now, :format => config[:conf]["tweet"]
+
     locations.each do |location|
       if beer.show_beer? location
-        tweeter.tweet(beer.name(location), beer.place(location))
-        Channel(config[:chan]).send "#{@beer.name location} javaPils i dag - #{@beer.place location}"
+        tweeter.tweet(message.format_string_with_hash(beer.info(location)))
+        Channel(chan).send(config[:conf]["announce"].format_string_with_hash(beer.info(location)))
       end
     end
   end
@@ -36,13 +38,13 @@ class JavaPilsPlugin
     locations = beer.beer?
 
     debug "Saw #{locations}"
-    
+
     locations.each do |location|
-      m.reply "Ja! #{beer.name location} javaPils i dag - #{beer.place location}"
+      m.reply(config[:conf]["reply"].format_string_with_hash(beer.info(location)))
     end
 
     if locations.size == 0
-      m.reply "Ikke i dag :("
+      m.reply config[:conf]['no-reply']
     end
   end
 end

@@ -1,4 +1,5 @@
 require 'general/config_loader'
+require 'general/string_expander'
 
 require 'beer/beer'
 

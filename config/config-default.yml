@@ -3,6 +3,10 @@ plugins:
     usage: "!c - List commands"
   java-pils:
     usage: "!pils? - Check for javaPils today"
+    announce: "NAME javaPils i dag - PLACE"
+    reply: "Ja! NAME javaPils i dag - PLACE"
+    no-reply: "Ikke i dag :("
+    tweet: "NAME javaPils i dag - %d. %b - PLACE"
   url-logger:
     usage: "See http://dukelinks.herokuapp.com for links posted in channel"
   twitter:
@@ -33,9 +37,11 @@ tweeter:
     token: ---
     secret: ---
   message:
-    beer: "LOC javaPils i dag - %d. %b - PLACE"
     mention: "Nevnt: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID"
 test:
+  plugins:
+    java-pils:
+      tweet: "Testing javapils announce NAME - %d. %b - week %V - PLACE"
   mongo:
     uri: mongodb://localhost
   bot:
@@ -43,6 +49,3 @@ test:
     nick: "test_duke"
     real-name: "javaBin Duke Test"
     user-name: "test_duke"
-  tweeter:
-    message:
-      beer: "Testing javapils announce LOC - %d. %b - week %V - PLACE"

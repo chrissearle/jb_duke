@@ -24,15 +24,8 @@ class Tweeter
     mentions()
   end
 
-  def tweet(name, place)
+  def tweet(message)
     return unless @enabled
-
-    message = I18n.l Time.now, :format => @message_formats['beer']
-
-    message = format_string(message, {
-        :loc => name,
-        :place => place
-    })
 
     @client.update(message)
   end
@@ -44,7 +37,13 @@ class Tweeter
 
     opts[:since_id] = @last_mention unless @last_mention.nil?
 
-    mentions = @client.mentions(opts)
+    mentions = []
+
+    begin
+      mentions = @client.mentions(opts)
+    rescue Twitter::Error::ClientError => e
+      puts e.inspect
+    end
 
     result = []
 
@@ -52,12 +51,11 @@ class Tweeter
       @last_mention = mentions.first.id
 
       result = mentions.map do |m|
-        format_string(@message_formats['mention'], {
-            :username => m.user.name,
-            :screenname => m.user.screen_name,
-            :text => m.full_text,
-            :id => m.id.to_s
-        })
+        @message_formats['mention'].format_string_with_hash({:username => m.user.name,
+                                                             :screenname => m.user.screen_name,
+                                                             :text => m.full_text,
+                                                             :id => m.id.to_s
+                                                            })
       end
     end
 
@@ -66,16 +64,5 @@ class Tweeter
     else
       []
     end
-  end
-
-  def format_string(template, params)
-    result = template
-
-    params.each do |key, val|
-      match = key.to_s.upcase
-      result = result.gsub(/#{match}/, val)
-    end
-
-    result
   end
 end

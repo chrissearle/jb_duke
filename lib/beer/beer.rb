@@ -20,20 +20,15 @@ class Beer
     false
   end
 
-  def place(location)
+  def info(location)
+    info = {:place => "Unknown location", :name => "Unknown group"}
+
     if @locations.has_key? location
-      return @locations[location]['place']
+      info[:place] = @locations[location]['place']
+      info[:name]  = @locations[location]['display-name']
     end
 
-    "Unknown location"
-  end
-
-  def name(location)
-    if @locations.has_key? location
-      return @locations[location]['display-name']
-    end
-
-    "Unknown group"
+    info
   end
 
   def show_beer?(location)

@@ -9,36 +9,20 @@ require 'pp'
 
 require 'dukelibs'
 
-def log(prefix, item)
-  puts prefix
-  pp item
-  $stdout.flush
-end
-
-I18n.load_path << Dir[File.join(File.dirname(__FILE__), 'locale', '*.{yml}')]
+I18n.load_path << Dir[File.join(Dir.pwd, 'locale', '*.{yml}')]
 I18n.default_locale = :nb
 
-opt = Getopt::Std.getopts("ta")
+opt = Getopt::Std.getopts("t")
 
 config = ConfigLoader.get_config(opt["t"])
 
-log "Running with config:", config
+puts "Running with config:"
+pp config
+$stdout.flush
 
 tweeter = Tweeter.new(config['tweeter'])
-
-if opt["a"]
-  tweeter.enable()
-  tweeter.tweet("Test", "TestLoc")
-  exit
-end
-
-
-
 beer = Beer.new(config['beer'])
-
-
-
-mongodb = Mongo::MongoClient::from_uri(config['mongo']['uri']).db(config['mongo']['db'])
+mongo_db = Mongo::MongoClient::from_uri(config['mongo']['uri']).db(config['mongo']['db'])
 
 
 plugin_conf = config['plugins']
@@ -56,8 +40,8 @@ bot = Cinch::Bot.new do
     c.plugins.plugins = [JavaPilsPlugin, CommandListPlugin, UrlLoggerPlugin, TwitterPlugin]
     c.plugins.options[JavaPilsPlugin]    = {:conf => plugin_conf['java-pils'], :beer => beer, :chan => conf['channel'], :tweeter => tweeter}
     c.plugins.options[TwitterPlugin]     = {:conf => plugin_conf['twitter'], :chan => conf['channel'], :tweeter => tweeter}
-    c.plugins.options[UrlLoggerPlugin]   = {:conf => plugin_conf['url-logger'], :mongo => mongodb}
-    c.plugins.options[CommandListPlugin] = {:conf => plugin_conf['command-list'], :mongo => mongodb}
+    c.plugins.options[UrlLoggerPlugin]   = {:conf => plugin_conf['url-logger'], :mongo => mongo_db}
+    c.plugins.options[CommandListPlugin] = {:conf => plugin_conf['command-list'], :mongo => mongo_db}
   end
 
   on :connect do
