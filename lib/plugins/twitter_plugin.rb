@@ -1,7 +1,7 @@
 class TwitterPlugin
   include Cinch::Plugin
 
-  set :required_options, [:chan, :tweeter]
+  set :required_options, [:conf, :chan, :tweeter]
 
   timer 300, method: :timed
 

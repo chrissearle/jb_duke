@@ -1,14 +1,14 @@
 class JavaPilsPlugin
   include Cinch::Plugin
 
-  set :required_options, [:beer, :chan, :tweeter]
+  set :required_options, [:conf, :beer, :chan, :tweeter]
 
   match /pils\?/
 
   timer 60, method: :timed
 
   def usage_hint
-    "!pils? - Check for javaPils today"
+    config[:conf]["usage"]
   end
 
   def timed

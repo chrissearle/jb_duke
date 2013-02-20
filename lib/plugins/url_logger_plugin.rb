@@ -1,12 +1,12 @@
 class UrlLoggerPlugin
   include Cinch::Plugin
 
-  set :required_options, [:mongo]
+  set :required_options, [:conf, :mongo]
 
   listen_to :channel
   
   def usage_hint
-    "See http://dukelinks.herokuapp.com for links posted in channel"
+    config[:conf]["usage"]
   end
 
   def listen(m)

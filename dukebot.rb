@@ -41,6 +41,7 @@ beer = Beer.new(config['beer'])
 mongodb = Mongo::MongoClient::from_uri(config['mongo']['uri']).db(config['mongo']['db'])
 
 
+plugin_conf = config['plugins']
 
 conf = config['bot']
 
@@ -53,9 +54,10 @@ bot = Cinch::Bot.new do
     c.channels = [conf['channel']]
     c.verbose = opt["t"]
     c.plugins.plugins = [JavaPilsPlugin, CommandListPlugin, UrlLoggerPlugin, TwitterPlugin]
-    c.plugins.options[JavaPilsPlugin] = {:beer => beer, :chan => conf['channel'], :tweeter => tweeter}
-    c.plugins.options[TwitterPlugin] = {:chan => conf['channel'], :tweeter => tweeter}
-    c.plugins.options[UrlLoggerPlugin] = {:mongo => mongodb}
+    c.plugins.options[JavaPilsPlugin]    = {:conf => plugin_conf['java-pils'], :beer => beer, :chan => conf['channel'], :tweeter => tweeter}
+    c.plugins.options[TwitterPlugin]     = {:conf => plugin_conf['twitter'], :chan => conf['channel'], :tweeter => tweeter}
+    c.plugins.options[UrlLoggerPlugin]   = {:conf => plugin_conf['url-logger'], :mongo => mongodb}
+    c.plugins.options[CommandListPlugin] = {:conf => plugin_conf['command-list'], :mongo => mongodb}
   end
 
   on :connect do

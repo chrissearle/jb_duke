@@ -1,10 +1,12 @@
 class CommandListPlugin
   include Cinch::Plugin
 
+  set :required_options, [:conf]
+
   match /c/
 
   def usage_hint
-    "!c - List commands"
+    config[:conf]["usage"]
   end
 
   def execute(m)

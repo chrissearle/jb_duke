@@ -1,3 +1,12 @@
+plugins:
+  command-list:
+    usage: "!c - List commands"
+  java-pils:
+    usage: "!pils? - Check for javaPils today"
+  url-logger:
+    usage: "See http://dukelinks.herokuapp.com for links posted in channel"
+  twitter:
+    conf: ""
 bot:
   hostname: "irc.underworld.no"
   channel: "#java.no"
