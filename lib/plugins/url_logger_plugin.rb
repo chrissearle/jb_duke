@@ -5,6 +5,10 @@ class UrlLoggerPlugin
 
   listen_to :channel
   
+  def usage_hint
+    "See http://dukelinks.herokuapp.com for links posted in channel"
+  end
+
   def listen(m)
     collection = config[:mongo].collection('urls')
   
