@@ -9,8 +9,9 @@ require 'pp'
 
 require 'dukelibs'
 
-def log(log)
-  pp log
+def log(prefix, item)
+  puts prefix
+  pp item
   $stdout.flush
 end
 
@@ -19,30 +20,11 @@ I18n.default_locale = :nb
 
 opt = Getopt::Std.getopts("ta")
 
-@test = opt["t"]
+config = ConfigLoader.get_config(opt["t"])
 
-def get_config
-  if @config.nil?
-    config =  YAML::load(File.open(File.join(File.dirname(__FILE__), 'config.yml')))
-    testconfig = config.delete 'test'
+log "Running with config:", config
 
-    if @test
-      config = config.deep_merge(testconfig)
-    end
-
-    @config = config
-  end
-
-  @config
-end
-
-log "Running with config:"
-
-log get_config
-
-conf = get_config['bot']
-
-tweeter = Tweeter.new(get_config['tweeter'])
+tweeter = Tweeter.new(config['tweeter'])
 
 if opt["a"]
   tweeter.enable()
@@ -50,10 +32,17 @@ if opt["a"]
   exit
 end
 
-beer = Beer.new(get_config['beer'])
 
-mongo = Mongo::MongoClient::from_uri(get_config['mongo']['uri'])
-mongodb = mongo.db(get_config['mongo']['db'])
+
+beer = Beer.new(config['beer'])
+
+
+
+mongodb = Mongo::MongoClient::from_uri(config['mongo']['uri']).db(config['mongo']['db'])
+
+
+
+conf = config['bot']
 
 bot = Cinch::Bot.new do
   configure do |c|
@@ -62,7 +51,7 @@ bot = Cinch::Bot.new do
     c.user = conf['user-name']
     c.server = conf['hostname']
     c.channels = [conf['channel']]
-    c.verbose = @test
+    c.verbose = opt["t"]
     c.plugins.plugins = [JavaPilsPlugin, CommandListPlugin, UrlLoggerPlugin, TwitterPlugin]
     c.plugins.options[JavaPilsPlugin] = {:beer => beer, :chan => conf['channel'], :tweeter => tweeter}
     c.plugins.options[TwitterPlugin] = {:chan => conf['channel'], :tweeter => tweeter}

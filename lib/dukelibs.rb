@@ -1,4 +1,4 @@
-require 'general/deep_merge'
+require 'general/config_loader'
 
 require 'beer/beer'
 
