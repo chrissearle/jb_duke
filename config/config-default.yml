@@ -1,25 +1,28 @@
 plugins:
   command-list:
-    usage: "!c - List commands"
+    usage: '!c - List commands'
   java-pils:
-    usage: "!pils? - Check for javaPils today"
-    announce: "NAME javaPils i dag - PLACE"
-    reply: "Ja! NAME javaPils i dag - PLACE"
-    no-reply: "Ikke i dag :("
-    tweet: "NAME javaPils i dag - %d. %b - PLACE"
+    usage: '!pils? - Check for javaPils today'
+    announce: 'NAME javaPils i dag - PLACE'
+    reply: 'Ja! NAME javaPils i dag - PLACE'
+    no-reply: 'Ikke i dag :('
+    tweet: 'NAME javaPils i dag - %d. %b - PLACE'
   url-logger:
-    usage: "See http://dukelinks.herokuapp.com for links posted in channel"
+    usage: 'See http://dukelinks.herokuapp.com for links posted in channel'
   twitter:
-    conf: ""
+    usage: '!tweet message - only for authorized users'
+    tweet-non-owner: 'Sorry NICK, but you are not authorized to tweet'
+    tweet-owner: 'OK NICK'
+    tweeters: ''
 bot:
-  hostname: "irc.underworld.no"
-  channel: "#java.no"
-  nick: "jb_duke"
-  real-name: "javaBin Duke Bot"
-  user-name: "jb_duke"
+  hostname: 'irc.underworld.no'
+  channel: '#java.no'
+  nick: 'jb_duke'
+  real-name: 'javaBin Duke Bot'
+  user-name: 'jb_duke'
 mongo:
-  uri: mongodb://localhost
-  db: dukebot
+  uri: 'mongodb://localhost'
+  db: 'dukebot'
 beer:
   locations:
     oslo:
@@ -31,21 +34,21 @@ beer:
       place: 'Billabong'
 tweeter:
   consumer:
-    token: ---
-    secret: ---
+    token: '---'
+    secret: '---'
   access:
-    token: ---
-    secret: ---
+    token: '---'
+    secret: '---'
   message:
-    mention: "Nevnt: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID"
+    mention: 'Nevnt: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID'
 test:
   plugins:
     java-pils:
-      tweet: "Testing javapils announce NAME - %d. %b - week %V - PLACE"
+      tweet: 'Testing javapils announce NAME - %d. %b - week %V - PLACE'
   mongo:
-    uri: mongodb://localhost
+    uri: 'mongodb://localhost'
   bot:
-    channel: "#just-testing"
-    nick: "test_duke"
-    real-name: "javaBin Duke Test"
-    user-name: "test_duke"
+    channel: '#just-testing'
+    nick: 'test_duke'
+    real-name: 'javaBin Duke Test'
+    user-name: 'test_duke'
