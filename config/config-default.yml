@@ -1,6 +1,7 @@
 plugins:
   command-list:
-    usage: '!c - List commands'
+    help: 'PLUGINS - use !usage <plugin> for more information'
+    usage: "!plugins - List installed plugins\n!usage <plugin> - get usage for a given plugin"
   java-pils:
     usage: '!pils? - Check for javaPils today'
     announce: 'NAME javaPils i dag - PLACE'
