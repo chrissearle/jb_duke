@@ -5,7 +5,7 @@ plugins:
     usage: '!pils? - Check for javaPils today'
     announce: 'NAME javaPils i dag - PLACE'
     reply: 'Ja! NAME javaPils i dag - PLACE'
-    no-reply: 'Ikke i dag :('
+    no-reply: 'Ikke i dag :( Hvis ikke noen har lyst ?'
     tweet: 'NAME javaPils i dag - %d. %b - PLACE'
   url-logger:
     usage: 'See http://dukelinks.herokuapp.com for links posted in channel'
