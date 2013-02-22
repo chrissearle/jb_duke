@@ -14,6 +14,9 @@ plugins:
     tweet-non-owner: 'Sorry NICK, but you are not authorized to tweet'
     tweet-owner: 'OK NICK'
     tweeters: ''
+  about:
+    usage: '!about - About the bot'
+    about: 'A cinch/ruby based IRC bot. See https://github.com/chrissearle/jb_duke'
 bot:
   hostname: 'irc.underworld.no'
   channel: '#java.no'
