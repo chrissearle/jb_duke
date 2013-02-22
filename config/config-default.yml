@@ -17,6 +17,10 @@ plugins:
   about:
     usage: '!about - About the bot'
     about: 'A cinch/ruby based IRC bot. See https://github.com/chrissearle/jb_duke'
+  friday:
+    usage: '!isitfriday? - Is it friday?'
+    friday: "Ja! It's Friday, Friday, Gotta get down on Friday"
+    not-friday: 'Nei.'
 bot:
   hostname: 'irc.underworld.no'
   channel: '#java.no'

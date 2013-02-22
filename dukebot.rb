@@ -37,12 +37,13 @@ bot = Cinch::Bot.new do
     c.server = conf['hostname']
     c.channels = [conf['channel']]
     c.verbose = opt["t"]
-    c.plugins.plugins = [JavaPilsPlugin, CommandListPlugin, UrlLoggerPlugin, TwitterPlugin, AboutPlugin]
+    c.plugins.plugins = [JavaPilsPlugin, CommandListPlugin, UrlLoggerPlugin, TwitterPlugin, AboutPlugin, FridayPlugin]
     c.plugins.options[JavaPilsPlugin]    = {:conf => plugin_conf['java-pils'], :beer => beer, :chan => conf['channel'], :tweeter => tweeter}
     c.plugins.options[TwitterPlugin]     = {:conf => plugin_conf['twitter'], :chan => conf['channel'], :tweeter => tweeter}
     c.plugins.options[UrlLoggerPlugin]   = {:conf => plugin_conf['url-logger'], :mongo => mongo_db}
     c.plugins.options[CommandListPlugin] = {:conf => plugin_conf['command-list'], :mongo => mongo_db}
     c.plugins.options[AboutPlugin]       = {:conf => plugin_conf['about']}
+    c.plugins.options[FridayPlugin]      = {:conf => plugin_conf['friday']}
   end
 
   on :connect do
