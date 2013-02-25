@@ -50,7 +50,6 @@ class Tweeter
     m = []
 
     @accounts.each do |name, account|
-      puts name
       m.concat(mentions_for(name))
     end
 
