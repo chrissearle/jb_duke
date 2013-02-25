@@ -41,14 +41,36 @@ beer:
       display-name: 'Oslo'
       place: 'Billabong'
 tweeter:
-  consumer:
-    token: '---'
-    secret: '---'
-  access:
-    token: '---'
-    secret: '---'
-  message:
-    mention: 'Nevnt: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID'
+  - name: 'javaPils'
+    tokens:
+      consumer:
+        token: '---'
+        secret: '---'
+      access:
+        token: '---'
+        secret: '---'
+    message:
+      mention: 'javaPils: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID'
+  - name: 'javaBin'
+    tokens:
+      consumer:
+        token: '---'
+        secret: '---'
+      access:
+        token: '---'
+        secret: '---'
+    message:
+      mention: 'javaBin: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID'
+  - name: 'javazone'
+    tokens:
+      consumer:
+        token: '---'
+        secret: '---'
+      access:
+        token: '---'
+        secret: '---'
+    message:
+      mention: 'javazone: USERNAME (@SCREENNAME) TEXT - https://twitter.com/SCREENNAME/status/ID'
 test:
   plugins:
     java-pils:

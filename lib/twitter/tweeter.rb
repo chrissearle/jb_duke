@@ -1,68 +1,87 @@
 class Tweeter
   def initialize(config)
     self.configure(config)
-    @last_mention = nil
     @enabled = false
   end
 
   def configure(config)
-    Twitter.configure do |conf|
-      conf.consumer_key = config['consumer']['token']
-      conf.consumer_secret = config['consumer']['secret']
-      conf.oauth_token = config['access']['token']
-      conf.oauth_token_secret = config['access']['secret']
+    @accounts = {}
+
+    config.each do |c|
+      key = c['name'].downcase.to_sym
+
+      @accounts[key] = {
+          :client => Twitter::Client.new(
+              :consumer_key => c['tokens']['consumer']['token'],
+              :consumer_secret => c['tokens']['consumer']['secret'],
+              :oauth_token => c['tokens']['access']['token'],
+              :oauth_token_secret => c['tokens']['access']['secret']
+          ),
+          :messages => c['message'],
+          :lastmention => nil
+      }
     end
-
-    @client = Twitter::Client.new
-
-    @message_formats = config['message']
   end
 
   def enable
     @enabled = true
+
     # Initialize @last_mentioned
     mentions()
   end
 
-  def tweet(message)
+  def tweet(name, message)
     return unless @enabled
 
-    @client.update(message)
+    return unless @accounts.has_key?(name)
+
+    @accounts[name][:client].update(message)
   end
 
   def mentions
     return unless @enabled
 
+    m = []
+
+    @accounts.each do |name, account|
+      puts name
+      m << mentions_for(name)
+    end
+
+    m
+  end
+
+  def mentions_for(name)
+    return unless @enabled
+
+    return unless @accounts.has_key?(name)
+
     opts = {}
 
-    opts[:since_id] = @last_mention unless @last_mention.nil?
+    opts[:since_id] = @accounts[name][:lastmention] unless @accounts[name][:lastmention].nil?
 
-    mentions = []
+    m = []
 
     begin
-      mentions = @client.mentions(opts)
+      m = @accounts[name][:client].mentions(opts)
     rescue Twitter::Error::ClientError => e
       puts e.inspect
     end
 
     result = []
 
-    if mentions.size > 0
-      @last_mention = mentions.first.id
+    if m.size > 0
+      @accounts[name][:lastmention] = m.first.id
 
-      result = mentions.map do |m|
-        @message_formats['mention'].format_string_with_hash({:username => m.user.name,
-                                                             :screenname => m.user.screen_name,
-                                                             :text => m.full_text,
-                                                             :id => m.id.to_s
-                                                            })
+      result = m.map do |msg|
+        @accounts[name][:messages]['mention'].format_string_with_hash({:username => msg.user.name,
+                                                                       :screenname => msg.user.screen_name,
+                                                                       :text => msg.full_text,
+                                                                       :id => msg.id.to_s
+                                                                      })
       end
     end
 
-    if opts.has_key? :since_id
-      result
-    else
-      []
-    end
+    result
   end
 end
