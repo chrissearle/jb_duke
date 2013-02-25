@@ -38,6 +38,12 @@ class Tweeter
     @accounts[name][:client].update(message)
   end
 
+  def accounts
+    return [] unless @enabled
+
+    @accounts.map { |k, v| k.to_s }
+  end
+
   def mentions
     return unless @enabled
 

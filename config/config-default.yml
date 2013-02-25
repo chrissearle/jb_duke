@@ -11,7 +11,7 @@ plugins:
   url-logger:
     usage: 'See http://dukelinks.herokuapp.com for links posted in channel'
   twitter:
-    usage: '!tweet message - only for authorized users'
+    usage: "!tweet message - only for authorized users\n!accounts - list configured accounts"
     tweet-non-owner: 'Sorry NICK, but you are not authorized to tweet'
     tweet-owner: 'OK NICK'
     tweeters: ''
