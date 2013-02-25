@@ -51,7 +51,7 @@ class Tweeter
 
     @accounts.each do |name, account|
       puts name
-      m << mentions_for(name)
+      m.concat(mentions_for(name))
     end
 
     m
