@@ -1,7 +1,7 @@
-require "#{Dir.pwd}/lib/general/config_loader"
+require "#{File.dirname(__FILE__)}/../lib/general/config_loader"
 
-describe "Load a simple config" do
-  it "finds the correct config" do
+describe 'Load a simple config' do
+  it 'finds the correct config' do
     config = ConfigLoader.load_config(File.join(File.dirname(__FILE__), 'config', 'simple-config-1.yml'))
 
     config.size.should eq(3)
@@ -16,8 +16,8 @@ describe "Load a simple config" do
   end
 end
 
-describe "Load an overridden config" do
-  it "finds the correct config" do
+describe 'Load an overridden config' do
+  it 'finds the correct config' do
     config = ConfigLoader.load_config(File.join(File.dirname(__FILE__), 'config', 'simple-config-1.yml'), File.join(File.dirname(__FILE__), 'config', 'simple-config-2.yml'))
 
     config.size.should eq(4)
@@ -35,8 +35,8 @@ describe "Load an overridden config" do
   end
 end
 
-describe "Load an overridden config with test" do
-  it "finds the correct config" do
+describe 'Load an overridden config with test' do
+  it 'finds the correct config' do
     config = ConfigLoader.load_config(File.join(File.dirname(__FILE__), 'config', 'simple-config-3.yml'), File.join(File.dirname(__FILE__), 'config', 'simple-config-4.yml'), true)
 
     config.size.should eq(4)
