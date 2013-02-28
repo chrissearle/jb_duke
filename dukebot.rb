@@ -16,11 +16,12 @@ opt = Getopt::Std.getopts("t")
 
 config = ConfigLoader.get_config(opt["t"])
 
-puts "Running with config:"
-pp config
-$stdout.flush
+logfile = open(config['bot']['log-file'], File::WRONLY | File::APPEND | File::CREAT)
+logfile.sync = true
 
-tweeter = Tweeter.new(config['tweeter'])
+PP.pp(config, logfile)
+
+tweeter = Tweeter.new(config['tweeter'], logfile)
 beer = Beer.new(config['beer'])
 mongo_db = Mongo::MongoClient::from_uri(config['mongo']['uri']).db(config['mongo']['db'])
 
@@ -50,9 +51,6 @@ bot = Cinch::Bot.new do
     tweeter.enable()
   end
 end
-
-logfile = open(conf['log-file'], File::WRONLY | File::APPEND | File::CREAT)
-logfile.sync = true
 
 bot.loggers << Cinch::Logger::FormattedLogger.new(logfile)
 

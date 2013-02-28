@@ -1,6 +1,7 @@
 class Tweeter
-  def initialize(config)
+  def initialize(config, logfile = $stdout)
     self.configure(config)
+    @logfile = logfile
     @enabled = false
   end
 
@@ -25,6 +26,8 @@ class Tweeter
 
   def enable
     @enabled = true
+
+    log_msg 'Enabling twitter'
 
     # Initialize @last_mentioned
     mentions()
@@ -70,7 +73,7 @@ class Tweeter
     begin
       m = @accounts[name][:client].mentions(opts)
     rescue Twitter::Error::ClientError => e
-      puts e.inspect
+      log_msg e.inspect
     end
 
     result = []
@@ -88,5 +91,11 @@ class Tweeter
     end
 
     result
+  end
+
+  private
+
+  def log_msg(msg)
+    @logfile.write("\n\nTWITTER: #{msg}\n\n")
   end
 end
