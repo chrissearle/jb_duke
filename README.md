@@ -1,4 +1,4 @@
-## JB Duke
+## JB Duke [![Build Status](https://secure.travis-ci.org/chrissearle/jb_duke.png)](https://secure.travis-ci.org/chrissearle/jb_duke.png)
 
 IRC Bot for #java.no on EFNet.
 
