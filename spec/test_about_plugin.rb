@@ -3,10 +3,12 @@ require "#{File.dirname(__FILE__)}/../lib/plugins/about_plugin"
 
 describe 'About Plugin' do
   before(:all) do
+    conf = {'usage' => '!about - About the bot', 'about' => 'A cinch/ruby based IRC bot. See https://github.com/chrissearle/jb_duke'}
+
     bot = Cinch::Bot.new do
       configure do |c|
         c.plugins.plugins = [AboutPlugin]
-        c.plugins.options[AboutPlugin] = {:conf => {'usage' => '!about - About the bot', 'about' => 'A cinch/ruby based IRC bot. See https://github.com/chrissearle/jb_duke'}}
+        c.plugins.options[AboutPlugin] = {:conf => conf}
       end
     end
 
