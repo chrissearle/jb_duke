@@ -1,0 +1,15 @@
+heading1:
+  sub1:
+    sub: 'newsub'
+  sub2:
+    sub: 'sub'
+heading4:
+  sub1:
+    sub: 'sub'
+test:
+  heading1:
+    sub1:
+      sub: 'testsub'
+  heading2:
+    sub2:
+      sub: 'testsub'

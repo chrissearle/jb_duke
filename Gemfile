@@ -7,3 +7,5 @@ gem 'cinch'
 gem 'mongo'
 gem 'bson_ext'
 gem 'foreman'
+
+gem 'rspec'

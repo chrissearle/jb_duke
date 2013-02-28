@@ -7,15 +7,22 @@ end
 
 class ConfigLoader
   def self.get_config(test = false)
-    default_config = load_file('config-default.yml')
-    local_config = load_file('config.yml')
+    load_config(File.join(Dir.pwd, 'config', 'config-default.yml'), File.join(Dir.pwd, 'config', 'config.yml'), test)
+  end
 
-    config = default_config.deep_merge(local_config)
+  def self.load_config(default_config_file, local_config_file = nil, test = false)
+    config = load_file(default_config_file)
 
-    test_config = config.delete 'test'
+    unless local_config_file.nil?
+      config = config.deep_merge(load_file(local_config_file))
+    end
 
-    if test
-      config = config.deep_merge(test_config)
+    if config.has_key? 'test'
+      test_config = config.delete 'test'
+
+      if test
+        config = config.deep_merge(test_config)
+      end
     end
 
     config
@@ -24,6 +31,6 @@ class ConfigLoader
   private
 
   def self.load_file(filename)
-    YAML::load(File.open(File.join(Dir.pwd, 'config', filename)))
+    YAML::load(File.open(filename))
   end
 end
