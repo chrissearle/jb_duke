@@ -9,15 +9,17 @@ class Beer
 
 
   def beer?(location = :all)
+    result = []
+
     if location == :all
-      return @locations.find_all { |l| beer_day_for_location? l[1] }.map { |l| l[0] }
+      result = @locations.find_all { |l| beer_day_for_location? l[1] }.map { |l| l[0] }
     else
       if @locations.has_key? location
-        return [location] if beer_day_for_location?(@locations[location])
+        result = [location] if beer_day_for_location?(@locations[location])
       end
     end
 
-    false
+    result
   end
 
   def info(location)
