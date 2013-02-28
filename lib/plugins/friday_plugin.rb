@@ -12,7 +12,7 @@ class FridayPlugin
   def execute(m)
     dow = (I18n.l Time.now, :format => '%u').to_i
 
-    if dow == 5
+    if dow == config[:conf]['dow'].to_i
       m.reply config[:conf]["friday"]
     else
       m.reply config[:conf]["not-friday"]

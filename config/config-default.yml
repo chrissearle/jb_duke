@@ -22,6 +22,7 @@ plugins:
     usage: '!isitfriday? - Is it friday?'
     friday: "Ja! It's Friday, Friday, Gotta get down on Friday"
     not-friday: 'Nei.'
+    dow: 5
 bot:
   hostname: 'irc.underworld.no'
   channel: '#java.no'
