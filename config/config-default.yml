@@ -29,6 +29,7 @@ bot:
   nick: 'jb_duke'
   real-name: 'javaBin Duke Bot'
   user-name: 'jb_duke'
+  log-file: '/var/log/dukebot.log'
 mongo:
   uri: 'mongodb://localhost'
   db: 'dukebot'
@@ -83,3 +84,4 @@ test:
     nick: 'test_duke'
     real-name: 'javaBin Duke Test'
     user-name: 'test_duke'
+    log-file: 'debug.log'

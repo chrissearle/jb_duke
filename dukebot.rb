@@ -51,4 +51,6 @@ bot = Cinch::Bot.new do
   end
 end
 
+bot.loggers << Cinch::Logger::FormattedLogger.new(IO.new(IO.sysopen(conf['log-file'], "w"), "w"))
+
 bot.start
