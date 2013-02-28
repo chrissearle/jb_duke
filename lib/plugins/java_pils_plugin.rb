@@ -14,9 +14,17 @@ class JavaPilsPlugin
   def timed
     debug "Timed - check beer"
 
-    beer = config[:beer]
     tweeter = config[:tweeter]
     chan = config[:chan]
+
+    timed_responses.each do |msg|
+      tweeter.tweet(msg)
+      Channel(chan).send(msg)
+    end
+  end
+
+  def timed_responses
+    beer = config[:beer]
 
     locations = beer.beer?
 
@@ -24,12 +32,14 @@ class JavaPilsPlugin
 
     message = I18n.l Time.now, :format => config[:conf]["tweet"]
 
+    result = []
     locations.each do |location|
       if beer.show_beer? location
-        tweeter.tweet(message.format_string_with_hash(beer.info(location)))
-        Channel(chan).send(config[:conf]["announce"].format_string_with_hash(beer.info(location)))
+        result << message.format_string_with_hash(beer.info(location))
       end
     end
+
+    result
   end
 
   def execute(m)
