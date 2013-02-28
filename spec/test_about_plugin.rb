@@ -1,5 +1,7 @@
+require 'spec_helper'
+
 require 'cinch'
-require "#{File.dirname(__FILE__)}/../lib/plugins/about_plugin"
+require 'plugins/about_plugin'
 
 describe 'About Plugin' do
   before(:all) do

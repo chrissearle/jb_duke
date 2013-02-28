@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/../lib/general/config_loader"
+require 'general/config_loader'
 
 describe 'Load config' do
   context 'simple config' do

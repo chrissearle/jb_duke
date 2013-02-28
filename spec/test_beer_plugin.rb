@@ -1,7 +1,7 @@
 require 'cinch'
-require "#{File.dirname(__FILE__)}/../lib/general/string_expander"
-require "#{File.dirname(__FILE__)}/../lib/beer/beer"
-require "#{File.dirname(__FILE__)}/../lib/plugins/java_pils_plugin"
+require 'general/string_expander'
+require 'beer/beer'
+require 'plugins/java_pils_plugin'
 
 require 'i18n'
 

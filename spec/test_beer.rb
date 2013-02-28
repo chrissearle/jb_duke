@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/../lib/beer/beer"
+require 'beer/beer'
 
 require 'i18n'
 

@@ -1,5 +1,5 @@
 require 'cinch'
-require "#{File.dirname(__FILE__)}/../lib/plugins/friday_plugin"
+require 'plugins/friday_plugin'
 
 require 'i18n'
 

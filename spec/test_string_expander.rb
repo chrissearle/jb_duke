@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/../lib/general/string_expander"
+require 'general/string_expander'
 
 describe 'Expand string' do
   context 'nil params' do

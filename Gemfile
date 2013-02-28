@@ -9,3 +9,4 @@ gem 'bson_ext'
 gem 'foreman'
 
 gem 'rspec'
+gem 'simplecov'
