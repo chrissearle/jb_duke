@@ -15,7 +15,7 @@ describe 'About Plugin' do
     end
 
     bot.loggers = Cinch::LoggerList.new()
-    bot.loggers << Cinch::Logger::FormattedLogger.new(IO.new(IO.sysopen("/dev/null", "w"),"w"))
+    bot.loggers << Cinch::Logger::FormattedLogger.new(open('/dev/null', File::WRONLY | File::APPEND))
 
     plugin_list = bot.instance_variable_get(:@plugins)
     config = bot.instance_variable_get(:@config)
