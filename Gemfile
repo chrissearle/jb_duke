@@ -10,3 +10,4 @@ gem 'foreman'
 
 gem 'rspec'
 gem 'simplecov'
+gem 'rake'
