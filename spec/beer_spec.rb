@@ -87,7 +87,7 @@ describe 'Beer check' do
     it 'should not list anything' do
       c = config
 
-      c['locations']['oslo']['announce-hour'] = ((I18n.l Time.now, :format => '%H').to_i + 1)
+      c['locations']['oslo']['day-of-week'] = ((I18n.l Time.now, :format => '%u').to_i + 1)
 
       beer = Beer.new(c)
 
@@ -99,7 +99,7 @@ describe 'Beer check' do
     it 'should not list anything' do
       c = config
 
-      c['locations']['oslo']['announce-hour'] = ((I18n.l Time.now, :format => '%H').to_i + 1)
+      c['locations']['oslo']['day-of-week'] = ((I18n.l Time.now, :format => '%u').to_i + 1)
 
       beer = Beer.new(c)
 

@@ -134,7 +134,7 @@ describe 'Java Pils Plugin' do
 
         responses = @plugin.timed_responses
 
-        responses.should eq(["Oslo javaPils i dag - 28. feb - Billabong"])
+        responses.should eq(["Oslo javaPils i dag - #{(I18n.l now, :format => '%d')}. #{(I18n.l now, :format => '%b')} - Billabong"])
       end
     end
   end
