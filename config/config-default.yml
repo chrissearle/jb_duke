@@ -38,7 +38,7 @@ beer:
     oslo:
       day-of-week: 2
       announce-hour: 10
-      announce-min: 0
+      announce-min: 15
       week: 'odd'
       display-name: 'Oslo'
       place: 'Billabong'
