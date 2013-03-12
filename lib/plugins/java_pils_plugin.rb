@@ -18,7 +18,7 @@ class JavaPilsPlugin
     chan = config[:chan]
 
     timed_responses.each do |msg|
-      tweeter.tweet(msg)
+      tweeter.tweet(:javapils, msg)
       Channel(chan).send(msg)
     end
   end
