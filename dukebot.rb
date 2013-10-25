@@ -6,6 +6,7 @@ require 'twitter'
 require 'getopt/std'
 require 'mongo'
 require 'pp'
+require 'yaml'
 
 require 'dukelibs'
 
